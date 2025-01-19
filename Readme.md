@@ -1,4 +1,4 @@
-# 🚀 Automated Deployment with Ansible
+#  Automated Deployment with Ansible
 
 This project automates the deployment of a multi-service infrastructure using **Ansible**, **Docker**, and **Docker Compose**. It includes:
 
@@ -9,30 +9,11 @@ This project automates the deployment of a multi-service infrastructure using **
 - Setting up hourly backups
 - Deploying a FastAPI development environment with Redis
 
----
-
 ## 📂 Folder Structure
-ansible/
-├── playbooks/
-│ ├── disable_ipv6.yml
-│ ├── install_docker.yml
-│ ├── deploy_drupal_stack.yml
-│ ├── deploy_gitea_woodpecker.yml
-│ ├── setup_backups.yml
-│ ├── setup_fastapi.yml
-├── templates/
-│ ├── haproxy.cfg
-│ ├── nginx.conf
-│ ├── httpd.conf
-│ ├── docker-compose-drupal.yml
-│ ├── docker-compose-gitea-woodpecker.yml
-│ ├── docker-compose-fastapi.yml
-│ ├── woodpecker-site1.yml
-│ ├── woodpecker-site2.yml
 
-Copy
+![image](https://github.com/user-attachments/assets/f9edeeba-62e2-4c32-b3e5-57a2042e9431)
 
----
+
 
 ## 🛠️ Prerequisites
 
