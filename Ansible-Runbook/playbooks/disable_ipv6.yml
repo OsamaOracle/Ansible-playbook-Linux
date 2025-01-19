@@ -1,5 +1,5 @@
 - name: Disable IPv6
-  hosts: all
+  hosts: localhost
   become: yes
   tasks:
     - name: Disable IPv6 in sysctl
