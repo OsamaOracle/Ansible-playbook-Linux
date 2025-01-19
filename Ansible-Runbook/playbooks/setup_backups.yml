@@ -1,0 +1,17 @@
+- name: Set up hourly backups
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create backup script
+      copy:
+        content: |
+          #!/bin/bash
+          tar -czf /backups/backup-$(date +%Y%m%d%H%M%S).tar.gz /opt/drupal-stack /opt/gitea-woodpecker
+        dest: /usr/local/bin/backup.sh
+        mode: '0755'
+
+    - name: Add cron job for hourly backups
+      cron:
+        name: "Hourly backup"
+        minute: "0"
+        job: "/usr/local/bin/backup.sh"

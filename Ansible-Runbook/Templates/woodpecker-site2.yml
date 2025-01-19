@@ -1,0 +1,7 @@
+pipeline:
+  deploy:
+    image: alpine
+    commands:
+      - apk add git
+      - git clone https://gitea.example.com/your-username/site2.git /usr/local/apache2/htdocs
+      - cd /usr/local/apache2/htdocs && composer install

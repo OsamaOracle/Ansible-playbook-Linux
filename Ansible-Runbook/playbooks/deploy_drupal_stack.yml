@@ -1,0 +1,11 @@
+- name: Deploy Drupal Stack
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy Docker Compose file for Drupal
+      copy:
+        src: templates/docker-compose-drupal.yml
+        dest: /opt/drupal-stack/docker-compose.yml
+
+    - name: Start Docker Compose stack
+      command: docker-compose -f /opt/drupal-stack/docker-compose.yml up -d

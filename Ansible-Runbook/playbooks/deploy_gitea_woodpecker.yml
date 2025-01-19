@@ -1,0 +1,11 @@
+- name: Deploy Gitea and Woodpecker CI
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy Docker Compose file for Gitea and Woodpecker
+      copy:
+        src: templates/docker-compose-gitea-woodpecker.yml
+        dest: /opt/gitea-woodpecker/docker-compose.yml
+
+    - name: Start Docker Compose stack
+      command: docker-compose -f /opt/gitea-woodpecker/docker-compose.yml up -d

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - nginx
+      - apache
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./site1:/var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=domain1.com
+
+  apache:
+    image: httpd:latest
+    volumes:
+      - ./site2:/usr/local/apache2/htdocs
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+    environment:
+      - VIRTUAL_HOST=domain2.com
+
+  php74:
+    image: php:7.4-fpm
+    volumes:
+      - ./site1:/var/www/html
+
+  php82:
+    image: php:8.2-fpm
+    volumes:
+      - ./site2:/usr/local/apache2/htdocs
+
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupaluser
+      MYSQL_PASSWORD: drupalpassword
+    volumes:
+      - ./mariadb_data:/var/lib/mysql

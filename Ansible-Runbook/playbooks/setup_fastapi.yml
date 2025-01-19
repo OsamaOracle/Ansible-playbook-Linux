@@ -1,0 +1,11 @@
+- name: Set up FastAPI Development Environment
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy Docker Compose file for FastAPI
+      copy:
+        src: templates/docker-compose-fastapi.yml
+        dest: /opt/fastapi/docker-compose.yml
+
+    - name: Start Docker Compose stack
+      command: docker-compose -f /opt/fastapi/docker-compose.yml up -d

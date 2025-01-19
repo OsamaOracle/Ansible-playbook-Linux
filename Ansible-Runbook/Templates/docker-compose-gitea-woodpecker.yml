@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  gitea:
+    image: gitea/gitea:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./gitea_data:/data
+    environment:
+      - DB_TYPE=sqlite3
+
+  woodpecker:
+    image: woodpeckerci/woodpecker-server:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./woodpecker_data:/var/lib/woodpecker
+    environment:
+      - WOODPECKER_GITEA_URL=http://gitea:3000
+      - WOODPECKER_GITEA_CLIENT=your-client-id
+      - WOODPECKER_GITEA_SECRET=your-client-secret
